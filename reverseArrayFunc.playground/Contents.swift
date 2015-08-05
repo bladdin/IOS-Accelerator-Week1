@@ -4,17 +4,14 @@ import UIKit
 
 var reverseArray = [1,2,3,4,5,6,7,8,9,10]
 
-func switchArray (array: [Int]){
-   newArray = [Int]()
+//func switchArray (array: [Int]){
+  var newArray = [Int]()
   
-  for var i = array.count; i >=0; i-- {
-    var x = 0
-    newArray[i] = array[x]
-    x++
+  for i in reverseArray.reverse(){
+    newArray.append(i)
   }
-  for ints in newArray{
-    print (ints)
-  }
+  println(newArray)
+  }  
 }
 
 
