@@ -21,7 +21,7 @@ class TweetJSONParsner{
       if let userInfo = tweetObjects["user"] as? [String : AnyObject],
       username = userInfo ["name"] as? String,
       text = tweetObjects ["text"] as? String,
-      id = tweetObjects ["id"] as? Int,
+      id = tweetObjects ["id_str"] as? String,
       profileImageURL = userInfo ["profile_image_url_https"] as? String{
         let tweet = Tweet(username: username, text: text, id: id, profileImageURL : profileImageURL )
         tweets.append (tweet)
