@@ -10,12 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
   
+  
   @IBOutlet weak var tableView: UITableView!
   
   var tweets = [Tweet]()
+  
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    tableView.estimatedRowHeight = 70
+    tableView.rowHeight = UITableViewAutomaticDimension
+    
     tableView.dataSource = self
     tableView.reloadData()
     
@@ -35,12 +42,16 @@ class ViewController: UIViewController {
           })
       }
     }
+    self.view.constraints()
     
 //    if let filePath = NSBundle.mainBundle().pathForResource("tweet", ofType: "json"){
 //      if let data = NSData(contentsOfFile: filePath){
 //        if let tweets = TweetJSONParsner.tweetsFromJSONData(data){
 //          self.tweets = tweets
 //        }
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLabels", name: UIContentSizeCategoryDidChangeNotification, object: nil)
+    
   }
     
     
@@ -49,6 +60,16 @@ class ViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+    deinit{
+      
+      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
+    }
+    
+    func updateLabels(){
+      self.tableView.reloadData()
+    }
+    
 
 }
 
@@ -59,9 +80,12 @@ extension ViewController : UITableViewDataSource{
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath)as! UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath)as! TweetCell
     let tweet = tweets[indexPath.row]
-    cell.textLabel?.text = tweet.text
+    cell.usernameLabel.text = tweet.username
+    //println(tweet.username)
+    cell.tweetTextLabel.text = tweet.text
+    cell.usernameLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
     return cell
   }
   

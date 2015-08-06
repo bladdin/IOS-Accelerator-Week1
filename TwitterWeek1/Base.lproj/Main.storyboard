@@ -17,16 +17,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Aoa-u2-feN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Aoa-u2-feN">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="TweetCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" id="26Z-22-Bim">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="TweetCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="100" id="26Z-22-Bim" customClass="TweetCell" customModule="TwitterWeek1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="26Z-22-Bim" id="LLf-6x-sn4">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymX-yM-Tid">
+                                                    <rect key="frame" x="8" y="36" width="584" height="56"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myU-4F-pQp">
+                                                    <rect key="frame" x="8" y="8" width="42" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ymX-yM-Tid" firstAttribute="trailing" secondItem="LLf-6x-sn4" secondAttribute="trailingMargin" id="7KW-37-doV"/>
+                                                <constraint firstItem="myU-4F-pQp" firstAttribute="leading" secondItem="LLf-6x-sn4" secondAttribute="leadingMargin" id="9Iw-l1-4xM"/>
+                                                <constraint firstItem="ymX-yM-Tid" firstAttribute="leading" secondItem="LLf-6x-sn4" secondAttribute="leadingMargin" id="F9q-jV-ikS"/>
+                                                <constraint firstItem="ymX-yM-Tid" firstAttribute="top" secondItem="myU-4F-pQp" secondAttribute="bottom" constant="8" id="MmJ-fv-YgC"/>
+                                                <constraint firstItem="ymX-yM-Tid" firstAttribute="bottom" secondItem="LLf-6x-sn4" secondAttribute="bottomMargin" id="U0d-84-WWu"/>
+                                                <constraint firstItem="myU-4F-pQp" firstAttribute="top" secondItem="LLf-6x-sn4" secondAttribute="topMargin" id="c4N-pX-5xP"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tweetTextLabel" destination="ymX-yM-Tid" id="IeD-ET-NqK"/>
+                                            <outlet property="usernameLabel" destination="myU-4F-pQp" id="NS5-Ak-gVx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
