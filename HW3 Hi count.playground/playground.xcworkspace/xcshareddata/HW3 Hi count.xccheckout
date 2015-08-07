@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D340C6A6-0018-4265-9160-DC989E5B2218</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HW3 Hi count</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>60431625FB8C2BA6F00381E10D951826805C5D74</key>
+		<string>github.com:bladdin/IOS-Accelerator-Week1.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HW3 Hi count.playground</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>60431625FB8C2BA6F00381E10D951826805C5D74</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:bladdin/IOS-Accelerator-Week1.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>60431625FB8C2BA6F00381E10D951826805C5D74</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>60431625FB8C2BA6F00381E10D951826805C5D74</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TwitterWeek1</string>
+		</dict>
+	</array>
+</dict>
+</plist>
