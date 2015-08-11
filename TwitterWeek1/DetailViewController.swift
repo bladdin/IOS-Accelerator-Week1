@@ -12,10 +12,14 @@ class DetailViewController: UIViewController {
   
   @IBOutlet weak var dvcLabel: UILabel!
   
-  var tweets = [Tweet]()
+  var selectedTweet : Tweet!
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    
+    dvcLabel.text = selectedTweet.text
     
     
   }

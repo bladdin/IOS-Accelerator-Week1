@@ -22,10 +22,12 @@ class TweetJSONParsner{
       username = userInfo ["name"] as? String,
       text = tweetObjects ["text"] as? String,
       id = tweetObjects ["id_str"] as? String,
+      //profileBackground = tweetObjects["profile_background_image_url"] as? String,
       profileImageURL = userInfo ["profile_image_url_https"] as? String{
-        let tweet = Tweet(username: username, text: text, id: id, profileImageURL : profileImageURL )
+        let tweet = Tweet(username: username, text: text, id: id, profileImageURL : profileImageURL, profileImage: nil)
         tweets.append (tweet)
       }
+      
       
     }
       return tweets

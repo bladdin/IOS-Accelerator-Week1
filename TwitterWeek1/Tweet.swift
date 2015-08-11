@@ -6,12 +6,16 @@
 //  Copyright (c) 2015 Benjamin Laddin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Tweet{
   let username : String
   let text : String
   let id : String
   let profileImageURL : String
-  
+  var profileImage : UIImage?
+//  let profileBackground : String
+//  let retweet : Bool
+//  let retweetSource : String
+//  let quoteSource : String
 }

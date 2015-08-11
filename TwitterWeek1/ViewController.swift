@@ -14,6 +14,8 @@ class ViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   var tweets = [Tweet]()
+  lazy var imageQueue = NSOperationQueue()
+
   
   
 
@@ -50,7 +52,7 @@ class ViewController: UIViewController {
 //          self.tweets = tweets
 //        }
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLabels", name: UIContentSizeCategoryDidChangeNotification, object: nil)
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLabels", name: UIContentSizeCategoryDidChangeNotification, object: nil)
     
   }
     
@@ -63,14 +65,31 @@ class ViewController: UIViewController {
   
     deinit{
       
-      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
+//      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
     
     func updateLabels(){
       self.tableView.reloadData()
     }
     
-
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowDeatilViewController" {
+      
+      if let detailViewController = segue.destinationViewController as? DetailViewController {
+        if let selectedPath = self.tableView.indexPathForSelectedRow(){
+       
+          let rowSelected = selectedPath.row
+          let selectedTweet = tweets[rowSelected]
+        
+          detailViewController.selectedTweet = selectedTweet
+          
+          
+        
+        
+        }
+      }
+    }
+  }
 }
 
 extension ViewController : UITableViewDataSource{
@@ -82,10 +101,54 @@ extension ViewController : UITableViewDataSource{
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath)as! TweetCell
     let tweet = tweets[indexPath.row]
+//    cell.tweetImage = nil
     cell.usernameLabel.text = tweet.username
     //println(tweet.username)
     cell.tweetTextLabel.text = tweet.text
-    cell.usernameLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+    cell.tweetImage = nil
+    
+    if let profileImage = tweet.profileImage{
+      cell.tweetImage.image = profileImage
+      
+    }else{
+      imageQueue.addOperationWithBlock({ () -> Void in
+        if let imageURL = NSURL(string: tweet.profileImageURL),
+          imageData = NSData(contentsOfURL: imageURL),
+          image = UIImage(data: imageData){
+            var size : CGSize
+            switch UIScreen.mainScreen().scale{
+            case 2:
+              size = CGSize(width: 160, height: 160)
+            case 3:
+              size = CGSize(width: 240, height: 240)
+            default:
+              size = CGSize(width: 80, height: 80)
+            }
+            
+            let resizedImage = ImageResizer.resizeImage(image, size: size)
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              tweet.profileImage = resizedImage
+              self.tweets[indexPath.row] = tweet
+              if cell.tag == cell{
+                cell.tweetImage = resizedImage
+              }
+              
+            })
+
+          }
+      })
+      
+    }
+    
+    
+    
+  
+      
+      
+    
+    //cell.tweetImage.image = tweet.profileImageURL
+//    cell.usernameLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
     return cell
   }
   
